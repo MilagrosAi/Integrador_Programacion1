@@ -15,6 +15,9 @@ Clona el repositorio:git clone https://github.com/Ozzetas/integrador_programacio
 Navega al directorio del proyecto:cd integrador_programacion1
 
 
+Asegúrate de estar en la rama master:git checkout master
+
+
 Asegúrate de que el archivo data/entrada.txt esté presente.
 
 Uso
@@ -67,9 +70,10 @@ Búsqueda hash: ~0.000005 segundos.
 
 
 
-Autor
+Autores
 
-Roqué, Gabriel Osvaldo (estudiante de Programación I).
+Ozzetas
+[Nombre de tu compañera]
 
 Licencia
 Este proyecto es para fines educativos y no tiene una licencia específica.
