@@ -1,3 +1,6 @@
+Link al video de Youtube:
+https://youtu.be/EFm5W9_lWmg
+
 Análisis de Archivos de Texto con Algoritmos de Búsqueda y Ordenamiento
 Este proyecto, desarrollado para la asignatura Programación I, implementa un programa en Python que analiza un archivo de texto en español para contar la frecuencia de palabras, ordenarlas usando el algoritmo Quick Sort y buscar palabras mediante búsqueda lineal y hash. El programa utiliza solo la biblioteca estándar de Python y aplica conceptos como estructuras secuenciales, condicionales, repetitivas, listas, diccionarios, recursividad y análisis de algoritmos.
 Descripción
