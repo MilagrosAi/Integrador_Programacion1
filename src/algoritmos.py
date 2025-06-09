@@ -1,3 +1,4 @@
+# Ordena una lista de tuplas (palabra, frecuencia) en orden descendente por frecuencia usando el algoritmo de ordenamiento rápido (quicksort).
 def ordenamiento_rapido(lista, comienzo, fin):
     """Ordena una lista de tuplas (palabra, frecuencia) por frecuencia de forma recursiva."""
     if comienzo < fin:
@@ -5,6 +6,7 @@ def ordenamiento_rapido(lista, comienzo, fin):
         ordenamiento_rapido(lista, comienzo, indice_pivote - 1)
         ordenamiento_rapido(lista, indice_pivote + 1, fin)
 
+# Divide la lista en dos sublistas alrededor de un pivote, colocando elementos con mayor frecuencia antes del pivote.
 def particion(lista, comienzo, fin):
     """Particiona la lista usando el último elemento como pivote."""
     pivote = lista[fin][1]  # Frecuencia del último elemento
