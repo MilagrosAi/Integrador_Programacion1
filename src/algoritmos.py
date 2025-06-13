@@ -1,19 +1,15 @@
-# Ordena una lista de tuplas (palabra, frecuencia) en orden descendente por frecuencia usando el algoritmo de ordenamiento rápido (quicksort).
-def ordenamiento_rapido(lista, comienzo, fin):
-    """Ordena una lista de tuplas (palabra, frecuencia) por frecuencia de forma recursiva."""
-    if comienzo < fin:
-        indice_pivote = particion(lista, comienzo, fin)
-        ordenamiento_rapido(lista, comienzo, indice_pivote - 1)
-        ordenamiento_rapido(lista, indice_pivote + 1, fin)
+def ordenamiento_rapido(lista, inicio, fin, key=lambda x: x):  # Define Quick Sort con una función key para ordenar
+    if inicio < fin:  # Verifica si el rango es válido
+        pivote = particion(lista, inicio, fin, key)  # Obtiene el índice del pivote
+        ordenamiento_rapido(lista, inicio, pivote - 1, key)  # Ordena la sublista izquierda
+        ordenamiento_rapido(lista, pivote + 1, fin, key)  # Ordena la sublista derecha
 
-# Divide la lista en dos sublistas alrededor de un pivote, colocando elementos con mayor frecuencia antes del pivote.
-def particion(lista, comienzo, fin):
-    """Particiona la lista usando el último elemento como pivote."""
-    pivote = lista[fin][1]  # Frecuencia del último elemento
-    i = comienzo - 1
-    for j in range(comienzo, fin):
-        if lista[j][1] >= pivote:  # Orden descendente por frecuencia
-            i += 1
-            lista[i], lista[j] = lista[j], lista[i]
-    lista[i + 1], lista[fin] = lista[fin], lista[i + 1]
-    return i + 1
+def particion(lista, inicio, fin, key):  # Define la función para particionar la lista
+    pivote = key(lista[fin])  # Elige el último elemento como pivote
+    i = inicio - 1  # Índice para elementos menores que el pivote
+    for j in range(inicio, fin):  # Itera desde inicio hasta fin-1
+        if key(lista[j]) <= pivote:  # Si el elemento es menor o igual al pivote
+            i += 1  # Incrementa el índice de menores
+            lista[i], lista[j] = lista[j], lista[i]  # Intercambia elementos
+    lista[i + 1], lista[fin] = lista[fin], lista[i + 1]  # Coloca el pivote en su posición final
+    return i + 1  # Devuelve el índice del pivote
