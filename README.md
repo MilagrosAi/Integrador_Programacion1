@@ -1,7 +1,9 @@
 Trabajo Integrador: Análisis de Archivos de Texto con Algoritmos de Búsqueda y Ordenamiento en Python
-Presentación
+Presentación.
+
 Somos Gabriel Osvaldo Roqué y Milagros Abril Airalde, estudiantes de la Tecnicatura en Programación de la Universidad Tecnológica Nacional (UTN), cursando la asignatura Programación I en 2025. Este trabajo integrador es nuestro proyecto final para la cátedra de la profesora Cintia Rigoni.Desarrollamos un programa en Python que analiza un archivo de texto en español (data/entrada.txt), calcula la frecuencia de palabras, las ordena usando el algoritmo recursivo Quick Sort, y permite buscar palabras con búsqueda lineal, binaria, y tabla hash. El proyecto aplica conceptos de Programación I como estructuras secuenciales, condicionales, repetitivas, listas, diccionarios, funciones, y recursividad, usando codificación utf-8 para preservar ñ y acentos.
-Descripción del Proyecto
+
+Descripción del Proyecto.
 El programa procesa un archivo de texto (~10,000 palabras) para:
 
 Contar la frecuencia de palabras con un diccionario (tabla hash).
@@ -24,19 +26,6 @@ Búsqueda lineal (“horizonte”): ~0.000030 segundos.
 Búsqueda hash (“horizonte”): ~0.000005 segundos.
 Búsqueda binaria (“horizonte”): ~0.000010 segundos.
 
-
-
-Estructura del Proyecto
-integrador_programacion1/
-├── data/
-│   └── entrada.txt           # Texto en español (~10,000 palabras)
-├── src/
-│   ├── principal.py         # Menú e integración
-│   ├── procesador_texto.py  # Lectura, frecuencias, búsquedas
-│   └── algoritmos.py        # Quick Sort
-│── README.md                # Este archivo
-│
-└──Integrador_Programacion1_Roque_Airalde_V2.pdf  # Documento
 
 Requisitos
 
@@ -126,7 +115,8 @@ O(log n)
 Documentación
 
 Documento: docs/Integrador_Programacion1_Roque_Airalde_final.docx incluye introducción, marco teórico, caso práctico, metodología, resultados, conclusiones, bibliografía, y anexos.
-Video explicativo: 
+
+Video explicativo: https://youtu.be/ILRtxGisrVo
 
 Repositorios
 
