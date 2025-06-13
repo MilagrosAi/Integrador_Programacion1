@@ -98,24 +98,21 @@ def busqueda_hash(frecuencias, objetivo):
     # Devuelve el resultado de la búsqueda (True/False) y el tiempo total.
     return resultado, tiempo_fin - tiempo_inicio
 
-def busqueda_binaria(palabras, objetivo):
-    # Ordenar la lista alfabéticamente si no está ordenada
-    palabras_ordenadas = sorted(palabras)
-    inicio = time.perf_counter()
-    izquierda, derecha = 0, len(palabras_ordenadas) - 1
-    
-    while izquierda <= derecha:
-        medio = (izquierda + derecha) // 2
-        if palabras_ordenadas[medio] == objetivo:
-            fin = time.perf_counter()
-            return True, fin - inicio
-        elif palabras_ordenadas[medio] < objetivo:
-            izquierda = medio + 1
-        else:
-            derecha = medio - 1
-    
-    fin = time.perf_counter()
-    return False, fin - inicio
+def busqueda_binaria(palabras, objetivo):  # Define la nueva función para búsqueda binaria
+    palabras_ordenadas = sorted(palabras)  # Ordena la lista de palabras alfabéticamente
+    inicio = time.perf_counter()  # Registra el tiempo inicial
+    izquierda, derecha = 0, len(palabras_ordenadas) - 1  # Define los índices iniciales
+    while izquierda <= derecha:  # Mientras el rango de búsqueda sea válido
+        medio = (izquierda + derecha) // 2  # Calcula el índice medio
+        if palabras_ordenadas[medio] == objetivo:  # Si el elemento medio es el objetivo
+            fin = time.perf_counter()  # Registra el tiempo final
+            return True, fin - inicio  # Devuelve True y el tiempo
+        elif palabras_ordenadas[medio] < objetivo:  # Si el objetivo es mayor
+            izquierda = medio + 1  # Ajusta el índice izquierdo
+        else:  # Si el objetivo es menor
+            derecha = medio - 1  # Ajusta el índice derecho
+    fin = time.perf_counter()  # Registra el tiempo final si no se encuentra
+    return False, fin - inicio  # Devuelve False y el tiempo
 
 # Define una función para mostrar las palabras más frecuentes.
 def mostrar_frecuencias_principales(lista_frecuencias, cantidad=5):
