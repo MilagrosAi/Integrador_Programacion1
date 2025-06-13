@@ -7,8 +7,9 @@ def leer_archivo_texto(ruta):  # Define la función para leer el archivo de text
         with open(ruta, 'r', encoding='utf-8') as archivo:  # Abre el archivo con codificación utf-8
             texto = archivo.read().lower()  # Lee todo el texto y lo convierte a minúsculas
             # Normaliza el texto a NFKD para separar caracteres combinados (ej., á → a + ')
-            texto_normalizado = ''.join(c for c in unicodedata.normalize('NFKD', texto) 
-                                      if unicodedata.category(c) != 'Mn')  # Elimina marcas diacríticas
+            texto_normalizado = ''.join(
+                c for c in unicodedata.normalize('NFKD', texto) 
+                if unicodedata.category(c) != 'Mn')  # Elimina marcas diacríticas
             # Filtra solo letras y espacios, reemplazando otros caracteres por espacios
             palabras = ''.join([c if c.isalpha() or c.isspace() else ' ' for c in texto_normalizado]).split()
             return [p for p in palabras if p]  # Devuelve lista de palabras no vacías
@@ -65,5 +66,5 @@ def busqueda_binaria(palabras, objetivo):  # Define la función para búsqueda b
 
 def mostrar_frecuencias_principales(lista_ordenada, cantidad=10):  # Define la función para mostrar frecuencias
     print("\nLas 10 palabras más frecuentes:")  # Imprime título
-    for palabra, freq in lista_ordenada[-cantidad:][::-1]:  # Itera sobre las últimas 'cantidad' tuplas, en orden descendente
+    for palabra, freq in lista_ordenada[-cantidad:][::-1]:  # Itera sobre las últimas 'cantidad' tuplas, descendente
         print(f"{palabra}: {freq}")  # Imprime palabra y frecuencia
