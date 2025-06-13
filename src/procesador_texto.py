@@ -6,9 +6,10 @@ def leer_archivo_texto(ruta):  # Define función para leer archivo
     archivo = open(ruta, 'r', encoding='utf-8')  # Abre archivo en utf-8
     texto = archivo.read().lower()  # Lee texto y convierte a minúsculas
     archivo.close()  # Cierra archivo
-    texto_normalizado = unicodedata.normalize('NFC', texto)  # Normaliza a NFC
+    print(f"Primeros 100 caracteres: {texto[:100]}")  # Imprime primeros 100 caracteres para depuración
+    texto_normalizado = unicodedata.normalize('NFC', texto)  # Normaliza a NFC para ñ y acentos
     palabras = []  # Crea lista vacía
-    palabra_actual = ''  # Inicializa cadena para palabra
+    palabra_actual = ''  # Inicializa cadena
     for caracter in texto_normalizado:  # Itera sobre caracteres
         if caracter.isalpha() or caracter in 'áéíóúñ':  # Si es letra o acento/ñ
             palabra_actual = palabra_actual + caracter  # Agrega a palabra
@@ -18,7 +19,8 @@ def leer_archivo_texto(ruta):  # Define función para leer archivo
                 palabra_actual = ''  # Reinicia palabra
     if len(palabra_actual) > 0:  # Si queda palabra
         palabras.append(palabra_actual)  # Agrega última palabra
-    return palabras  # Devuelve lista de palabras
+    print(f"Palabras encontradas: {len(palabras)}")  # Imprime cantidad de palabras
+    return palabras  # Devuelve lista
 
 def calcular_frecuencias_palabras(palabras):  # Define función para contar frecuencias
     frecuencias = {}  # Crea diccionario vacío
@@ -39,7 +41,7 @@ def busqueda_lineal(palabras, objetivo):  # Define búsqueda lineal
     inicio = time.perf_counter()  # Registra tiempo inicial
     encontrado = False  # Inicializa bandera
     indice = 0  # Inicializa índice
-    while indice < len(palabras) and not encontrado:  # Mientras no termine lista ni encuentre
+    while indice < len(palabras) and not encontrado:  # Mientras no termine lista
         if palabras[indice] == objetivo:  # Si encuentra palabra
             encontrado = True  # Marca encontrado
         indice = indice + 1  # Incrementa índice
@@ -60,7 +62,7 @@ def busqueda_binaria(palabras, objetivo):  # Define búsqueda binaria
     izquierda = 0  # Inicializa índice izquierdo
     derecha = len(palabras_ordenadas) - 1  # Inicializa índice derecho
     encontrado = False  # Inicializa bandera
-    while izquierda <= derecha and not encontrado:  # Mientras rango válido y no encontrado
+    while izquierda <= derecha and not encontrado:  # Mientras rango válido
         medio = (izquierda + derecha) // 2  # Calcula medio
         if palabras_ordenadas[medio] == objetivo:  # Si medio es objetivo
             encontrado = True  # Marca encontrado
@@ -81,3 +83,4 @@ def mostrar_frecuencias_principales(lista_ordenada, cantidad=10):  # Define func
         print(f"{palabra}: {freq}")  # Imprime
         contador = contador + 1  # Incrementa contador
         indice = indice - 1  # Decrementa índice
+        
