@@ -1,60 +1,38 @@
-# Importa funciones del módulo procesador_texto para procesar texto, calcular frecuencias y realizar búsquedas.
-from procesador_texto import leer_archivo_texto, calcular_frecuencias_palabras, ordenar_frecuencias, mostrar_frecuencias_principales, busqueda_lineal, busqueda_hash
+from procesador_texto import leer_archivo_texto, calcular_frecuencias_palabras, ordenar_frecuencias, mostrar_frecuencias_principales, busqueda_lineal, busqueda_hash, busqueda_binaria  # Importa funciones desde procesador_texto.py
 
-# Define la función principal que coordina el procesamiento del archivo y la interacción con el usuario.
-def principal():
-    # Define la ruta del archivo de texto a procesar.
-    ruta_archivo = "data/entrada.txt"
-    # Lee el archivo de texto y obtiene una lista de palabras normalizadas.
-    palabras = leer_archivo_texto(ruta_archivo)
-    # Verifica si la lista de palabras está vacía; si lo está, termina la función.
-    if not palabras:
-        return
+def principal():  # Define la función principal del programa
+    ruta_archivo = "data/entrada.txt"  # Define la ruta del archivo de texto
+    palabras = leer_archivo_texto(ruta_archivo)  # Lee el archivo y obtiene la lista de palabras
+    if not palabras:  # Verifica si la lista está vacía (por error en la lectura)
+        return  # Sale de la función si hay error
     
-    # Imprime el número total de palabras procesadas.
-    print(f"Total de palabras procesadas: {len(palabras)}")
-    # Calcula la frecuencia de cada palabra, almacenándolas en un diccionario.
-    frecuencias = calcular_frecuencias_palabras(palabras)
+    print(f"Total de palabras procesadas: {len(palabras)}")  # Imprime el total de palabras
+    frecuencias = calcular_frecuencias_palabras(palabras)  # Calcula las frecuencias de palabras
     
-    # Ordena las frecuencias en orden descendente y mide el tiempo de ordenamiento.
-    lista_ordenada, tiempo_ordenamiento = ordenar_frecuencias(frecuencias)
-    # Imprime el tiempo que tomó ordenar las frecuencias, con 6 decimales de precisión.
-    print(f"Tiempo de ordenamiento rápido: {tiempo_ordenamiento:.6f} segundos")
-    # Muestra las 10 palabras más frecuentes junto con sus frecuencias.
-    mostrar_frecuencias_principales(lista_ordenada, cantidad=10)
+    lista_ordenada, tiempo_ordenamiento = ordenar_frecuencias(frecuencias)  # Ordena las frecuencias y mide el tiempo
+    print(f"Tiempo de ordenamiento rápido: {tiempo_ordenamiento:.6f} segundos")  # Imprime el tiempo de Quick Sort
+    mostrar_frecuencias_principales(lista_ordenada, cantidad=10)  # Muestra las 10 palabras más frecuentes
     
-    # Inicia un bucle interactivo para mostrar un menú de opciones al usuario.
-    while True:
-        # Imprime las opciones disponibles: buscar una palabra o salir.
-        print("\nOpciones:")
-        print("1. Buscar una palabra")
-        print("2. Salir")
-        # Solicita al usuario que seleccione una opción (1 o 2).
-        opcion = input("Seleccione una opción (1 o 2): ")
+    while True:  # Inicia un bucle infinito para el menú
+        print("\nOpciones:")  # Imprime título del menú
+        print("1. Buscar una palabra")  # Opción para buscar
+        print("2. Salir")  # Opción para salir
+        opcion = input("Seleccione una opción (1 o 2): ")  # Lee la opción del usuario
         
-        # Si el usuario selecciona la opción 1, realiza una búsqueda de palabra.
-        if opcion == "1":
-            # Solicita al usuario que ingrese la palabra a buscar, recomendando minúsculas y sin acentos.
-            objetivo = input("Ingrese una palabra para buscar (en minúsculas, sin acentos si no funcionan): ")
-            # Realiza una búsqueda lineal de la palabra en la lista de palabras y mide el tiempo.
-            encontrado_lineal, tiempo_lineal = busqueda_lineal(palabras, objetivo)
-            # Realiza una búsqueda hash de la palabra en el diccionario de frecuencias y mide el tiempo.
-            encontrado_hash, tiempo_hash = busqueda_hash(frecuencias, objetivo)
+        if opcion == "1":  # Si elige buscar
+            objetivo = input("Ingrese una palabra para buscar (en minúsculas, sin acentos): ")  # Pide la palabra a buscar
+            encontrado_lineal, tiempo_lineal = busqueda_lineal(palabras, objetivo)  # Realiza búsqueda lineal
+            encontrado_hash, tiempo_hash = busqueda_hash(frecuencias, objetivo)  # Realiza búsqueda hash
+            encontrado_binaria, tiempo_binaria = busqueda_binaria(palabras, objetivo)  # Realiza búsqueda binaria
             
-            # Imprime el resultado de la búsqueda lineal (si se encontró o no) y el tiempo tomado.
-            print(f"Búsqueda lineal: {'Encontrada' if encontrado_lineal else 'No encontrada'}, Tiempo: {tiempo_lineal:.6f} segundos")
-            # Imprime el resultado de la búsqueda hash (si se encontró o no) y el tiempo tomado.
-            print(f"Búsqueda hash: {'Encontrada' if encontrado_hash else 'No encontrada'}, Tiempo: {tiempo_hash:.6f} segundos")
-        # Si el usuario selecciona la opción 2, termina el programa.
-        elif opcion == "2":
-            # Imprime un mensaje de despedida.
-            print("Saliendo del programa.")
-            # Sale del bucle, finalizando el programa.
-            break
-        # Si el usuario ingresa una opción inválida, muestra un mensaje de error.
-        else:
-            print("Opción no válida, intente nuevamente.")
+            print(f"Búsqueda lineal: {'Encontrada' if encontrado_lineal else 'No encontrada'}, Tiempo: {tiempo_lineal:.6f} segundos")  # Imprime resultado de búsqueda lineal
+            print(f"Búsqueda hash: {'Encontrada' if encontrado_hash else 'No encontrada'}, Tiempo: {tiempo_hash:.6f} segundos")  # Imprime resultado de búsqueda hash
+            print(f"Búsqueda binaria: {'Encontrada' if encontrado_binaria else 'No encontrada'}, Tiempo: {tiempo_binaria:.6f} segundos")  # Imprime resultado de búsqueda binaria
+        elif opcion == "2":  # Si elige salir
+            print("Saliendo del programa.")  # Imprime mensaje de salida
+            break  # Sale del bucle
+        else:  # Si la opción no es válida
+            print("Opción no válida, intente nuevamente.")  # Imprime mensaje de error
 
-# Verifica si el script se ejecuta directamente y, de ser así, llama a la función principal.
-if __name__ == "__main__":
-    principal()
+if __name__ == "__main__":  # Verifica si el archivo se ejecuta directamente
+    principal()  # Llama a la función principal
