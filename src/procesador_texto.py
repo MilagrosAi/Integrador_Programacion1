@@ -98,6 +98,25 @@ def busqueda_hash(frecuencias, objetivo):
     # Devuelve el resultado de la búsqueda (True/False) y el tiempo total.
     return resultado, tiempo_fin - tiempo_inicio
 
+def busqueda_binaria(palabras, objetivo):
+    # Ordenar la lista alfabéticamente si no está ordenada
+    palabras_ordenadas = sorted(palabras)
+    inicio = time.perf_counter()
+    izquierda, derecha = 0, len(palabras_ordenadas) - 1
+    
+    while izquierda <= derecha:
+        medio = (izquierda + derecha) // 2
+        if palabras_ordenadas[medio] == objetivo:
+            fin = time.perf_counter()
+            return True, fin - inicio
+        elif palabras_ordenadas[medio] < objetivo:
+            izquierda = medio + 1
+        else:
+            derecha = medio - 1
+    
+    fin = time.perf_counter()
+    return False, fin - inicio
+
 # Define una función para mostrar las palabras más frecuentes.
 def mostrar_frecuencias_principales(lista_frecuencias, cantidad=5):
     """Muestra las primeras N palabras más frecuentes."""
